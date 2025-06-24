@@ -4,6 +4,7 @@ namespace BladeSync\Laraauth\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use BladeSync\Laraauth\Commands\InstallRoutesCommand;
+use BladeSync\Laraauth\Commands\InstallCommand;
 
 
 class AuthPackageServiceProvider extends ServiceProvider
@@ -16,6 +17,10 @@ class AuthPackageServiceProvider extends ServiceProvider
     // ...
     public function boot()
     {
+         $this->commands([
+                InstallCommand::class,
+                InstallRoutesCommand::class,
+            ]);
         $this->loadViewsFrom(__DIR__.'/../../resources/views', 'authpkg');
         $this->loadMigrationsFrom(__DIR__.'/../../database/migrations');
 
